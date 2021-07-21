@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoveNowB", "MoveNowB.csproj", "{138E8C56-AC42-47DD-B73E-F7E2E4FF4BB9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{138E8C56-AC42-47DD-B73E-F7E2E4FF4BB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{138E8C56-AC42-47DD-B73E-F7E2E4FF4BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{138E8C56-AC42-47DD-B73E-F7E2E4FF4BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{138E8C56-AC42-47DD-B73E-F7E2E4FF4BB9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0AF3F1D9-511D-415C-A9C8-F149473554BB}
+	EndGlobalSection
+EndGlobal

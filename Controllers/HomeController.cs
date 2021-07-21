@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MoveNowB.Models;
+using MoveNowB.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,7 +18,13 @@ namespace MoveNowB.Controllers
         {
             _logger = logger;
         }
-
+        [HttpGet]
+        public IActionResult AddCar()
+        {
+            CarViewModel cVM = new CarViewModel();
+            cVM.pageHeader = "New Car(s) to Collection";
+            return View(cVM);
+        }
         public IActionResult Index()
         {
             return View();

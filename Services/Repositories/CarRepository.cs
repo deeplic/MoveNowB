@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MoveNowB.Services.Repositories
 {
-    public class CarRepository:ICarReposity
+    public class CarRepository:ICarRepository
     {
         private readonly AppDbContext _context;
         public CarRepository(AppDbContext context)

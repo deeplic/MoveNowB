@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoveNowB.Services.Interfaces
 {
-    public interface ICarReposity
+    public interface ICarRepository
     {
         Car AddCar(Car car);
         Car GetCarById(int id);

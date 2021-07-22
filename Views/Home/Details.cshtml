@@ -1,5 +1,37 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model DetailViewModel
+
 @{
+    ViewData["Title"] = Model.pageHeader;
 }
+
+<h4 class="flow-text center">@Model.pageHeader</h4>
+<div class="row">
+
+    <div class="col s12">
+        <div class="card large">
+            <div class="card-image">
+                @if ((Model.Car.PhotoPath) == null || Model.Car.PhotoPath == "")
+                {
+                    <img src="https://source.unsplash.com/1600x900/?car">
+                }
+                else
+                {
+                    <img src="~/images/@Model.Car.PhotoPath" />
+                }
+                <strong><span class="card-title">@Model.Car.BrandName @Model.Car.ModelName</span></strong>
+            </div>
+            <div class="card-content">
+                <p>
+                    @Model.Car.Description
+                </p>
+            </div>
+            <div class="card-action center">
+                <a href="!#" class="btn">Rent</a>
+                <a asp-action="Index" class="btn indigo">Home</a>
+               <a href="!#" class="btn">Edit</a>
+               <a asp-action="AddCar" class="btn">New</a>
+            </div>
+        </div>
+    </div>
+
+</div>

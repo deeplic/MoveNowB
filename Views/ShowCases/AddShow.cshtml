@@ -1,0 +1,59 @@
+﻿@model ShowCaseViewModel
+
+@{
+    ViewData["Title"] = "New Showcase";
+}
+<h4 class="flow-text center">@Model.pageHeader </h4>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <form asp-action="AddShow" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="red-text"></div>
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <label asp-for="BrandName" ></label>
+                        <input asp-for="BrandName"  />
+                        <span asp-validation-for="BrandName" class="red-text"></span>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <select asp-for="ShowType" asp-items="Html.GetEnumSelectList<ShowType>()">
+                            <option value="">Display option</option>
+                        </select>
+                        <span asp-validation-for="ShowType" class="red-text"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <label asp-for="ShortDescription" ></label>
+                        <input asp-for="ShortDescription"  />
+                        <span asp-validation-for="ShortDescription" class="red-text"></span>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <label asp-for="LongDescription" ></label>
+                        <textarea asp-for="LongDescription" class="materialize-textarea"></textarea>
+                        <span asp-validation-for="LongDescription" class="red-text"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <div class="btn">
+                            <input asp-for="Photo"  />
+                        </div>
+                    </div>
+                </div>
+                <div class="input-field col s12">
+                    <input type="submit" value="Add Showcase" class="btn " />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

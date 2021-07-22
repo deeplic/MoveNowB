@@ -34,6 +34,7 @@ namespace MoveNowB
                     Configuration.GetConnectionString("ConString")));
             //Data services
             services.AddScoped<ICarRepository, CarRepository>();
+            services.AddScoped<IShowCaseRepository, ShowCaseRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

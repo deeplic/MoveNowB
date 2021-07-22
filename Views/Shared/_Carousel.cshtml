@@ -1,0 +1,31 @@
+﻿@inject MoveNowB.Services.Interfaces.IShowCaseRepository _showCase
+
+<div class="slider">
+    <ul class="slides">
+        @if (_showCase.GetShowCases().Count() > 0)
+        {
+            foreach (var showCase in _showCase.GetShowCases())
+            {
+                <li>
+                    @if ((showCase.PhotoPath) == null || showCase.PhotoPath == "")
+                    {
+                        <img src="https://source.unsplash.com/1600x900/?car">
+                    }
+                    else
+                    {
+                        <img src="~/images/@showCase.PhotoPath" />
+                    }
+                    <div class="caption left-align">
+                        <h3>@showCase.ShortDescription</h3>
+                        <h5 class="light grey-text text-lighten-3">@showCase.LongDescription</h5>
+                        <a class="btn indigo" asp-action="BrandCars" asp-route-name="@showCase.BrandName">@showCase.BrandName</a>
+                    </div>
+                </li>
+            }
+        }
+        else
+        {
+            <li>UYATI NGIYAFISA KUTSI LETINOMBOLO TANI</li>
+        }
+    </ul>
+</div>

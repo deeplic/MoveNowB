@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MoveNowB.Models.Car>
+@{
+    ViewData["Title"] = "All Cars";
+}
+<div class="row container">
+    @if (Model.Count() > 0)
+    {
+        @foreach (var item in Model)
+        {
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image">
+                        @if ((item.PhotoPath) == null || item.PhotoPath == "")
+                        {
+                            <img src="https://source.unsplash.com/1600x900/?car">
+                        }
+                        else
+                        {
+                            <img src="~/images/@item.PhotoPath" />
+                        }
+                        <strong><span class="card-title">@item.BrandName @item.ModelName</span></strong>
+                    </div>
+                    <div class="card-content">
+                        <p class="truncate">
+                            @item.Description
+                        </p>
+                    </div>
+                    <div class="card-action center">
+                        @if (item.Amount > 0)
+                        {
+                            <a asp-controller="RentCar" asp-action="NewRent" asp-route-id="@item.CarID" class="btn">Rent</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="RentCar" asp-action="NewRent" asp-route-id="@item.CarID" class="btn disabled">Rent</a>
+                        }
+                        <a asp-action="Details" asp-route-id="@item.CarID" class="btn indigo">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.CarID" class="btn">Edit</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="center">
+            <img src="~/images/notfound.svg" width="450" />
+        </div>
+        <p class="flow-text center">Oops! no results found &nbsp;<a onclick="goBack()" class="btn rounded"><i class="material-icons left">arrow_back</i>go back</a></p>
+    }
+</div>

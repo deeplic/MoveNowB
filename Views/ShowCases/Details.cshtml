@@ -1,0 +1,38 @@
+﻿@model MoveNowB.Models.ShowCase
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h4 class="flow-text center"></h4>
+<div class="row">
+
+    <div class="col s12">
+        <div class="card large">
+            <div class="card-image">
+                @if ((Model.PhotoPath) == null || Model.PhotoPath == "")
+                {
+                    <img src="https://source.unsplash.com/1600x900/?car">
+                }
+                else
+                {
+                    <img src="~/images/@Model.PhotoPath" />
+                }
+                <strong><span class="card-title">@Model.BrandName</span></strong>
+            </div>
+            <div class="card-content">
+                <p>
+                    <strong>@Model.ShortDescription</strong><br />
+                    @Model.LongDescription
+                </p>
+            </div>
+            <div class="card-action center">
+                <a href="#" class="btn">Rent</a>
+                <a asp-action="Edit" asp-route-id="@Model.ShowID" class="btn">Edit</a>
+                <a asp-action="Index" class="btn indigo">Home</a>
+                <a asp-action="AddShow" class="btn">New</a>
+            </div>
+        </div>
+    </div>
+
+</div>

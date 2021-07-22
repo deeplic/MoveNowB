@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MoveNowB.Data;
 using MoveNowB.Models;
 using MoveNowB.Services.Interfaces;
 using MoveNowB.ViewModels;
@@ -15,10 +17,12 @@ namespace MoveNowB.Controllers
     {
         public readonly IShowCaseRepository _showCaseReposity;
         public readonly IWebHostEnvironment _hostingEnvironment;
-        public ShowCasesController(IShowCaseRepository showCaseReposity, IWebHostEnvironment hostingEnvironment)
+        private readonly AppDbContext _context;
+        public ShowCasesController(IShowCaseRepository showCaseReposity, IWebHostEnvironment hostingEnvironment, AppDbContext context)
         {
             _showCaseReposity = showCaseReposity;
             _hostingEnvironment = hostingEnvironment;
+            _context = context;
         }
         public IActionResult Index()
         {
@@ -59,6 +63,22 @@ namespace MoveNowB.Controllers
             }
 
             return View(showModel);
+        }
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var showCase = await _context.ShowCases
+                .FirstOrDefaultAsync(m => m.ShowID == id);
+            if (showCase == null)
+            {
+                return NotFound();
+            }
+
+            return View(showCase);
         }
     }
 }

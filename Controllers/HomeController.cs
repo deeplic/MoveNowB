@@ -130,7 +130,11 @@ namespace MoveNowB.Controllers
             var model = _carReposity.GetAllCars();
             return View(model);
         }
-
+        public IActionResult ShowSearchResults(string SearchPhrase)
+        {
+            var model = _context.Cars.Where(j => j.BrandName.Contains(SearchPhrase) || j.ModelName.Contains(SearchPhrase)).ToList();
+            return View("AllCars", model);
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "All Cars";
 }
+@await Html.PartialAsync("~/Views/Shared/_searchCar.cshtml");
 <div class="row container">
     @if (Model.Count() > 0)
     {

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MoveNowB.Models.Car>
+@{
+    ViewData["Title"] = "Brand Cars";
+}
+@await Html.PartialAsync("~/Views/Shared/_searchCar.cshtml");
+<div class="row container">
+    @foreach (var item in Model)
+    {
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-image">
+                    @if ((item.PhotoPath) == null || item.PhotoPath == "")
+                    {
+                        <img src="https://source.unsplash.com/1600x900/?car">
+                    }
+                    else
+                    {
+                        <img src="~/images/@item.PhotoPath" />
+                    }
+                    <strong><span class="card-title">@item.BrandName @item.ModelName</span></strong>
+                </div>
+                <div class="card-content">
+                    <p class="truncate">
+                        @item.Description
+                    </p>
+                </div>
+                <div class="card-action center">
+                    @if (item.Amount > 0)
+                    {
+                        <a asp-controller="RentCar" asp-action="NewRent" asp-route-id="@item.CarID" class="btn">Rent</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="RentCar" asp-action="NewRent" asp-route-id="@item.CarID" class="btn disabled">Rent</a>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.CarID" class="btn indigo">Details</a>
+                   <a asp-action="Edit" asp-route-id="@item.CarID" class="btn">Edit</a>
+                        
+                </div>
+            </div>
+        </div>
+    }
+</div>

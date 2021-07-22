@@ -102,6 +102,7 @@ namespace MoveNowB.Controllers
                 }
                 finally
                 {
+                    
                     //return RedirectToAction("Details", new { id });
                 }
                 return RedirectToAction("Details", new { id });

@@ -13,13 +13,13 @@
         <li>
             <div class="collapsible-header"><i class="material-icons">done</i>Active Showcases</div>
             <div class="collapsible-body">
-                all active cases will be here
+                @await Html.PartialAsync("~/Views/Shared/_activeShowCases.cshtml")
             </div>
         </li>
         <li>
             <div class="collapsible-header"><i class="material-icons">close</i>Hidden Showcases</div>
             <div class="collapsible-body">
-                all hidden cases will be here
+                @await Html.PartialAsync("~/Views/Shared/_hiddenShowCases.cshtml")
             </div>
         </li>
     </ul>

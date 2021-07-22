@@ -1,0 +1,32 @@
+﻿@inject MoveNowB.Services.Interfaces.IShowCaseRepository _showCase;
+
+<div class="row container">
+    @foreach (var item in _showCase.GetHideShowCases())
+    {
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-image">
+                    @if ((item.PhotoPath) == null || item.PhotoPath == "")
+                    {
+                        <img src="https://source.unsplash.com/1600x900/?car">
+                    }
+                    else
+                    {
+                        <img src="~/images/@item.PhotoPath" />
+                    }
+                    <strong><span class="card-title">@item.BrandName</span></strong>
+                </div>
+                <div class="card-content">
+                    <p class="truncate">
+                        <strong>Short Caption:</strong> @item.ShortDescription <br />
+                        <strong> Long Caption:</strong> @item.LongDescription
+                    </p>
+                </div>
+                <div class="card-action center">
+                    <a asp-action="Details" asp-route-id="@item.ShowID" class="btn indigo">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.ShowID" class="btn">Edit</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

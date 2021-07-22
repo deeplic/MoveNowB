@@ -39,7 +39,7 @@ namespace MoveNowB.Services.Repositories
         }
         public IEnumerable<ShowCase> GetHideShowCases()
         {
-            return _context.ShowCases;
+            return _context.ShowCases.Where(x => x.ShowType == ShowType.Normal);
         }
         public ShowCase GetShowCaseById(int id)
         {

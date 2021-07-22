@@ -125,5 +125,14 @@ namespace MoveNowB.Controllers
 
             return View(showCase);
         }
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var showCase = await _context.ShowCases.FindAsync(id);
+            _context.ShowCases.Remove(showCase);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

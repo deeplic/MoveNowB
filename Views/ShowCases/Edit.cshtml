@@ -1,0 +1,57 @@
+﻿@model MoveNowB.Models.ShowCase
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h4 class="flow-text center">Edit ShowCase </h4>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="red-text"></div>
+                <div class="row">
+                    <input type="hidden" asp-for="ShowID" />
+                    <input asp-for="PhotoPath" class="form-control" type="hidden" />
+                    <div class="input-field col s12 m6">
+                        <label asp-for="BrandName" class="control-label"></label>
+                        <input asp-for="BrandName" class="form-control" />
+                        <span asp-validation-for="BrandName" class="red-text"></span>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <label asp-for="ShortDescription" class="control-label"></label>
+                        <input asp-for="ShortDescription" class="form-control" />
+                        <span asp-validation-for="ShortDescription" class="red-text"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <label asp-for="LongDescription" class="control-label"></label>
+                        <textarea asp-for="LongDescription" class="materialize-textarea"></textarea>
+                        <span asp-validation-for="LongDescription" class="red-text"></span>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <select asp-for="ShowType" asp-items="Html.GetEnumSelectList<ShowType>()">
+                            <option value="">Display option</option>
+                        </select>
+                        <span asp-validation-for="ShowType" class="red-text"></span>
+                    </div>
+                </div>
+                <div class="input-field col s12 m6">
+                    <input type="submit" value="Publish Update" class="btn" />
+                </div>
+                <div class="input-field col s12 m6">
+                    <a asp-action="Delete" asp-route-id="@Model.ShowID" class="btn red">Delete Entry</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

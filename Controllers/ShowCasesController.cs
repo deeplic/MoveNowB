@@ -70,15 +70,22 @@ namespace MoveNowB.Controllers
             {
                 return NotFound();
             }
-
             var showCase = await _context.ShowCases
                 .FirstOrDefaultAsync(m => m.ShowID == id);
             if (showCase == null)
             {
                 return NotFound();
             }
-
             return View(showCase);
+        }
+        public IActionResult Edit(int id)
+        {
+            var show = _showCaseReposity.GetShowCaseById(id);
+            if (show == null)
+            {
+                return NotFound();
+            }
+            return View(show);
         }
     }
 }

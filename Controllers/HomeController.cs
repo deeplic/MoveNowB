@@ -62,6 +62,13 @@ namespace MoveNowB.Controllers
 
             return View(carModel);
         }
+        public IActionResult Details(int id)
+        {
+            DetailViewModel dVM = new DetailViewModel();
+            dVM.Car = _carReposity.GetCarById(id);
+            dVM.pageHeader = _carReposity.GetCarById(id).ModelName;
+            return View(dVM);
+        }
         public IActionResult Index()
         {
             return View();

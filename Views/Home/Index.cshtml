@@ -3,6 +3,7 @@
     ViewData["Title"] = "Home Page";
 }
 
+@await Html.PartialAsync("~/Views/Shared/_BreadCrumb.cshtml");
 <div class="row container">
     @foreach (var item in Model)
     {

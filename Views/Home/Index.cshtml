@@ -1,8 +1,42 @@
-﻿@{
+﻿@model IEnumerable<MoveNowB.Models.Car>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row container">
+    @foreach (var item in Model)
+    {
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-image">
+                    @if ((item.PhotoPath) == null || item.PhotoPath == "")
+                    {
+                        <img src="https://source.unsplash.com/1600x900/?car">
+                    }
+                    else
+                    {
+                        <img src="~/images/@item.PhotoPath" />
+                    }
+                    <strong><span class="card-title">@item.BrandName @item.ModelName</span></strong>
+                </div>
+                <div class="card-content">
+                    <p class="truncate">
+                        @item.Description
+                    </p>
+                </div>
+                <div class="card-action center">
+                    @if (item.Amount > 0)
+                    {
+                        <a class="btn">Rent</a>
+                    }
+                    else
+                    {
+                        <a class="btn disabled">Rent</a>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.CarID" class="btn indigo">Details</a>
+                    <a class="btn">Edit</a>
+                </div>
+            </div>
+        </div>
+    }
 </div>

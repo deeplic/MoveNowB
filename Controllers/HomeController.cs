@@ -59,7 +59,6 @@ namespace MoveNowB.Controllers
                 _carReposity.AddCar(newCar);
                 return RedirectToAction("Details", new { id = newCar.CarID });
             }
-
             return View(carModel);
         }
         public IActionResult Details(int id)
@@ -71,7 +70,8 @@ namespace MoveNowB.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var model = _carReposity.GetHomeCars();
+            return View(model);
         }
 
         public IActionResult Privacy()

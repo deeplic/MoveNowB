@@ -108,6 +108,18 @@ namespace MoveNowB.Controllers
             }
             return View(car);
         }
+        public IActionResult Delete(int id)
+        {
+            Car car = _context.Cars.Find(id);
+            return View(car);
+        }
+        // POST: Cars/Delete/5
+        [HttpPost, ActionName("Delete")]
+        public IActionResult ConfirmDelete(int id)
+        {
+            _carReposity.DeleteCar(id);
+            return RedirectToAction("Index", "Home");
+        }
         public IActionResult Privacy()
         {
             return View();

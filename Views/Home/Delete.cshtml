@@ -1,0 +1,41 @@
+﻿@model MoveNowB.Models.Car
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container">
+    <h3 class="flow-text">Are you sure you want to delete this Car?</h3>
+    <div>
+        <div class="row">
+
+            <div class="col s12">
+                <div class="card small horizontal">
+                    <div class="card-image">
+                        @if ((Model.PhotoPath) == null || Model.PhotoPath == "")
+                        {
+                            <img src="https://source.unsplash.com/1600x900/?car">
+                        }
+                        else
+                        {
+                            <img src="~/images/@Model.PhotoPath" />
+                        }
+                        <strong><span class="card-title">@Model.BrandName @Model.ModelName</span></strong>
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            @Model.Description
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="CarID" />
+            <input type="submit" value="Delete" class="btn red" /> |
+            <a asp-action="Index">Back to List</a>
+        </form>
+    </div>
+</div>

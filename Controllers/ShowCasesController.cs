@@ -109,5 +109,21 @@ namespace MoveNowB.Controllers
             }
             return View(show);
         }
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var showCase = await _context.ShowCases
+                .FirstOrDefaultAsync(m => m.ShowID == id);
+            if (showCase == null)
+            {
+                return NotFound();
+            }
+
+            return View(showCase);
+        }
     }
 }

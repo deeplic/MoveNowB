@@ -87,5 +87,27 @@ namespace MoveNowB.Controllers
             }
             return View(show);
         }
+        [HttpPost]
+        public IActionResult Edit(int id, [Bind("ShowID,BrandName,LongDescription,ShortDescription,ShowType,PhotoPath")] ShowCase show)
+        {
+            if (id != show.ShowID)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(show);
+                    _context.SaveChanges();
+                }
+                finally
+                {
+                    //return RedirectToAction("Details", new { id });
+                }
+                return RedirectToAction("Details", new { id });
+            }
+            return View(show);
+        }
     }
 }

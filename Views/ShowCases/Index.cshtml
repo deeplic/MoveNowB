@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="center flow-text">Show cases</h1>
+
+
+<div class="container">
+    <p>
+        <a asp-action="AddShow" class="btn">Add New Showcase</a>
+    </p>
+    <ul class="collapsible">
+        <li>
+            <div class="collapsible-header"><i class="material-icons">done</i>Active Showcases</div>
+            <div class="collapsible-body">
+                all active cases will be here
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header"><i class="material-icons">close</i>Hidden Showcases</div>
+            <div class="collapsible-body">
+                all hidden cases will be here
+            </div>
+        </li>
+    </ul>
+</div>

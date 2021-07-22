@@ -28,7 +28,7 @@
             <div class="card-action center">
                 <a class="btn">Rent</a>
                 <a asp-action="Index" class="btn indigo">Home</a>
-               <a class="btn">Edit</a>
+               <a asp-action="Edit" asp-route-id="@Model.Car.CarID" class="btn">Edit</a>
                <a asp-action="AddCar" class="btn">New</a>
             </div>
         </div>

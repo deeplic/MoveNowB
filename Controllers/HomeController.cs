@@ -73,7 +73,15 @@ namespace MoveNowB.Controllers
             var model = _carReposity.GetHomeCars();
             return View(model);
         }
-
+        public IActionResult Edit(int id)
+        {
+            var car = _carReposity.GetCarById(id);
+            if (car == null)
+            {
+                return NotFound();
+            }
+            return View(car);
+        }
         public IActionResult Privacy()
         {
             return View();

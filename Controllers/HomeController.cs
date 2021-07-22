@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MoveNowB.Data;
 using MoveNowB.Models;
 using MoveNowB.Services.Interfaces;
 using MoveNowB.Services.Repositories;
@@ -18,10 +19,12 @@ namespace MoveNowB.Controllers
     {
         private readonly ICarRepository _carReposity;
         private readonly IWebHostEnvironment _hostingEnvironment;
-        public HomeController(ICarRepository carReposity,IWebHostEnvironment hostingEnvironment)
+        private readonly AppDbContext _context;
+        public HomeController(ICarRepository carReposity,IWebHostEnvironment hostingEnvironment, AppDbContext context)
         {
             _carReposity = carReposity;
             _hostingEnvironment = hostingEnvironment;
+            _context = context;
         }
         [HttpGet]
         public IActionResult AddCar()
@@ -79,6 +82,29 @@ namespace MoveNowB.Controllers
             if (car == null)
             {
                 return NotFound();
+            }
+            return View(car);
+        }
+        [HttpPost]
+        public IActionResult Edit(int id, [Bind("CarID,BrandName,ModelName,Year,Description,Amount,ShowType,PhotoPath")] Car car)
+        {
+            if (id != car.CarID)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(car);
+                    _context.SaveChanges();
+                    RedirectToAction("Details", "Home");
+                }
+                finally
+                {
+                    //return RedirectToAction("Details", new { id });
+                }
+                return RedirectToAction("Details", new { id });
             }
             return View(car);
         }

@@ -16,5 +16,6 @@ namespace MoveNowB.Data
         }
         public DbSet<Car> Cars { get; set; }
         public DbSet<ShowCase> ShowCases { get; set; }
+        public DbSet<RentCar> RentCars { get; set; }
     }
 }

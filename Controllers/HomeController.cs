@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MoveNowB.Data;
@@ -64,6 +65,7 @@ namespace MoveNowB.Controllers
             }
             return View(carModel);
         }
+        [AllowAnonymous]
         public IActionResult Details(int id)
         {
             DetailViewModel dVM = new DetailViewModel();
@@ -71,6 +73,7 @@ namespace MoveNowB.Controllers
             dVM.pageHeader = _carReposity.GetCarById(id).ModelName;
             return View(dVM);
         }
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var model = _carReposity.GetHomeCars();
@@ -121,20 +124,24 @@ namespace MoveNowB.Controllers
             _carReposity.DeleteCar(id);
             return RedirectToAction("Index", "Home");
         }
+        [AllowAnonymous]
         public IActionResult Privacy()
         {
             return View();
         }
+        [AllowAnonymous]
         public IActionResult AllCars()
         {
             var model = _carReposity.GetAllCars();
             return View(model);
         }
+        [AllowAnonymous]
         public IActionResult ShowSearchResults(string SearchPhrase)
         {
             var model = _context.Cars.Where(j => j.BrandName.Contains(SearchPhrase) || j.ModelName.Contains(SearchPhrase)).ToList();
             return View("AllCars", model);
         }
+        [AllowAnonymous]
         public IActionResult BrandCars(string name)
         {
             var model = _carReposity.GetCarByBrand(name);

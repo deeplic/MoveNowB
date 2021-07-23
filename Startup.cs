@@ -39,6 +39,8 @@ namespace MoveNowB
             //Data services
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<IShowCaseRepository, ShowCaseRepository>();
+            services.AddScoped<IRentCarRepository, RentCarRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             //Identity Service
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
             //Make all pages accessible after login only

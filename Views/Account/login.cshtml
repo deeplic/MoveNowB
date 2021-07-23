@@ -1,0 +1,33 @@
+﻿@model LoginViewModel
+
+@{
+    ViewBag.Title = "User Login";
+}
+
+<h1 class="flow-text center">User Login</h1>
+<div class="container">
+    <div class="row">
+        <div class="col offset-s2 s8">
+            <form method="post">
+                <div asp-validation-summary="All" class="red-text"></div>
+                <div class="input-field">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="red-text"></span>
+                </div>
+                <div class="input-field">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="red-text"></span>
+                </div>
+                <p>
+                    <label>
+                        <input type="checkbox" asp-for="RememberMe" />
+                        <span>Remember Me</span>
+                    </label>
+                </p>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

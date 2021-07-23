@@ -77,5 +77,10 @@ namespace MoveNowB.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("index", "home");
         }
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
     }
 }

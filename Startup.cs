@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MoveNowB.Data;
+using MoveNowB.Models;
 using MoveNowB.Services.Interfaces;
 using MoveNowB.Services.Repositories;
 using System;
@@ -37,7 +38,7 @@ namespace MoveNowB
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<IShowCaseRepository, ShowCaseRepository>();
             //Identity Service
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>(); ;
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>(); ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

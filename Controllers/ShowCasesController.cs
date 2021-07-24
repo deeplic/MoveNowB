@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MoveNowB.Data;
@@ -28,6 +29,7 @@ namespace MoveNowB.Controllers
         {
             return View();
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult AddShow()
         {
             ShowCaseViewModel sVM = new ShowCaseViewModel();
@@ -35,6 +37,7 @@ namespace MoveNowB.Controllers
             return View(sVM);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult AddShow(ShowCaseViewModel showModel)
         {
             ShowCaseViewModel sVM = new ShowCaseViewModel();
@@ -78,6 +81,7 @@ namespace MoveNowB.Controllers
             }
             return View(showCase);
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             var show = _showCaseReposity.GetShowCaseById(id);
@@ -88,6 +92,7 @@ namespace MoveNowB.Controllers
             return View(show);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id, [Bind("ShowID,BrandName,LongDescription,ShortDescription,ShowType,PhotoPath")] ShowCase show)
         {
             if (id != show.ShowID)
@@ -109,6 +114,7 @@ namespace MoveNowB.Controllers
             }
             return View(show);
         }
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,6 +131,7 @@ namespace MoveNowB.Controllers
 
             return View(showCase);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

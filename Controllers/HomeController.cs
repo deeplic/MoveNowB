@@ -28,12 +28,14 @@ namespace MoveNowB.Controllers
             _context = context;
         }
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult AddCar()
         {
             CarViewModel cVM = new CarViewModel();
             cVM.pageHeader = "New Car(s) to Collection";
             return View(cVM);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult AddCar(CarViewModel carModel)
         {
@@ -79,6 +81,7 @@ namespace MoveNowB.Controllers
             var model = _carReposity.GetHomeCars();
             return View(model);
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             var car = _carReposity.GetCarById(id);
@@ -89,6 +92,7 @@ namespace MoveNowB.Controllers
             return View(car);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id, [Bind("CarID,BrandName,ModelName,Year,Description,Amount,ShowType,PhotoPath")] Car car)
         {
             if (id != car.CarID)
@@ -112,12 +116,14 @@ namespace MoveNowB.Controllers
             }
             return View(car);
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             Car car = _context.Cars.Find(id);
             return View(car);
         }
         // POST: Cars/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         public IActionResult ConfirmDelete(int id)
         {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MoveNowB.Models;
 using MoveNowB.Services.Interfaces;
@@ -37,6 +38,7 @@ namespace MoveNowB.Controllers
             _rentCarReposity.returnCar(rentId, carId, "return");
             return RedirectToAction("Index");
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Dashboard()
         {
             var model = _rentCarReposity.GetAllRents();

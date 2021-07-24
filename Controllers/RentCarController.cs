@@ -22,14 +22,19 @@ namespace MoveNowB.Controllers
         }
         public IActionResult Index()
         {
-            /*var userid = _userService.GetUserId();
+            var userid = _userService.GetUserId();
             string username = _userManager.Users.FirstOrDefault(x => x.Id == userid).UserName;
-            var model = _rentCarReposity.RentsByUser(username);*/
-            return View(/*model*/);
+            var model = _rentCarReposity.RentsByUser(username);
+            return View(model);
         }
         public IActionResult NewRent(int id)
         {
             _rentCarReposity.rentCar(id, "rent");
+            return RedirectToAction("Index");
+        }
+        public IActionResult ReturnCar(int rentId, int carId)
+        {
+            _rentCarReposity.returnCar(rentId, carId, "return");
             return RedirectToAction("Index");
         }
     }

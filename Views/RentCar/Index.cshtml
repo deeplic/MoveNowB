@@ -1,1 +1,37 @@
-﻿<h1>Rent Car Index</h1>
+﻿@model IEnumerable<MoveNowB.Models.RentCar>
+@{
+    ViewData["Title"] = "Rent Dashboard";
+}
+
+<h4 class="flow-text center">My Car Rent Dashboard</h4>
+<hr />
+<div class="container">
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>Car Name</th>
+                <th>Full Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CarName</td>
+                    <td>@item.FullName</td>
+                    <td>
+                        @if (item.isReturned == false)
+                        {
+                            <a class="btn" asp-action="ReturnCar" asp-route-rentId="@item.RentId" asp-route-carId="@item.CarId">Return Car</a>
+                        }
+                        @if (item.isReturned == true)
+                        {
+                            <p> Car Returned</p>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

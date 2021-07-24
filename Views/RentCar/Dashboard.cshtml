@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MoveNowB.Models.RentCar>
+@inject MoveNowB.Services.Interfaces.IRentCarRepository _rentCarReposity;
+@{
+    ViewData["Title"] = "Rent Dashboard";
+}
+
+<h4 class="flow-text center">Main Dashboard</h4>
+<hr />
+<div class="container">
+    <table class="striped">
+        <thead>
+            <tr>
+                <th>Car Name</th>
+                <th>Full Name</th>
+                <th>Status</th>
+                <th>Availability</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CarName</td>
+                    <td>@item.FullName</td>
+                    <td>
+                        @if (item.isReturned == false)
+                        {
+                            <p class="indigo-text"> Car Not Returned</p>
+                        }
+                        @if (item.isReturned == true)
+                        {
+                            <p class="green-text"> Car Returned</p>
+                        }
+                    </td>
+                    <td>@_rentCarReposity.Availability(item.CarId) </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

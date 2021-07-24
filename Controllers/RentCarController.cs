@@ -37,5 +37,10 @@ namespace MoveNowB.Controllers
             _rentCarReposity.returnCar(rentId, carId, "return");
             return RedirectToAction("Index");
         }
+        public IActionResult Dashboard()
+        {
+            var model = _rentCarReposity.GetAllRents();
+            return View(model);
+        }
     }
 }

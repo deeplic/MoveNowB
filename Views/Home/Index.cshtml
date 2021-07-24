@@ -28,7 +28,7 @@
                 <div class="card-action center">
                     @if (item.Amount > 0)
                     {
-                        <a class="btn">Rent</a>
+                        <a asp-controller="RentCar" asp-action="NewRent" asp-route-id="@item.CarID" class="btn">Rent</a>
                     }
                     else
                     {

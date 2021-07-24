@@ -26,10 +26,17 @@
                 </p>
             </div>
             <div class="card-action center">
-                <a class="btn">Rent</a>
+                @if (Model.Car.Amount > 0)
+                {
+                    <a asp-controller="RentCar" asp-action="NewRent" asp-route-id="@Model.Car.CarID" class="btn">Rent</a>
+                }
+                else
+                {
+                    <a class="btn disabled">Rent</a>
+                }
                 <a asp-action="Index" class="btn indigo">Home</a>
-               <a asp-action="Edit" asp-route-id="@Model.Car.CarID" class="btn">Edit</a>
-               <a asp-action="AddCar" class="btn">New</a>
+                <a asp-action="Edit" asp-route-id="@Model.Car.CarID" class="btn">Edit</a>
+                <a asp-action="AddCar" class="btn">New</a>
             </div>
         </div>
     </div>

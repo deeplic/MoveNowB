@@ -88,5 +88,36 @@ namespace MoveNowB.Controllers
 
             return View(model);
         }
+        // This action responds to HttpPost and receives EditRoleViewModel
+        [HttpPost]
+        public async Task<IActionResult> EditRole(EditRoleViewModel model)
+        {
+            var role = await _roleManager.FindByIdAsync(model.Id);
+
+            if (role == null)
+            {
+                ViewBag.ErrorMessage = $"Role with Id = {model.Id} cannot be found";
+                return View("NotFound");
+            }
+            else
+            {
+                role.Name = model.RoleName;
+
+                // Update the Role using UpdateAsync
+                var result = await _roleManager.UpdateAsync(role);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("ListRoles");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return View(model);
+            }
+        }
     }
 }

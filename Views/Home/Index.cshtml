@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<MoveNowB.Models.Car>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -35,7 +37,13 @@
                         <a class="btn disabled">Rent</a>
                     }
                     <a asp-action="Details" asp-route-id="@item.CarID" class="btn indigo">Details</a>
-                    <a asp-action="Edit" asp-route-id="@item.CarID" class="btn">Edit</a>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.CarID" class="btn">Edit</a>
+                        }
+                    }
                 </div>
             </div>
         </div>

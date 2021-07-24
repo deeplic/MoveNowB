@@ -1,4 +1,6 @@
 ﻿@model DetailViewModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
 
 @{
     ViewData["Title"] = Model.pageHeader;
@@ -35,8 +37,15 @@
                     <a class="btn disabled">Rent</a>
                 }
                 <a asp-action="Index" class="btn indigo">Home</a>
-                <a asp-action="Edit" asp-route-id="@Model.Car.CarID" class="btn">Edit</a>
-                <a asp-action="AddCar" class="btn">New</a>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@Model.Car.CarID" class="btn">Edit</a>
+
+                        <a asp-action="AddCar" class="btn">New</a>
+                    }
+                }
             </div>
         </div>
     </div>

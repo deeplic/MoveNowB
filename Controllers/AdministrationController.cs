@@ -199,5 +199,20 @@ namespace MoveNowB.Controllers
 
             return RedirectToAction("EditRole", new { Id = roleId });
         }
+        public async Task<IActionResult> Delete(string id)
+        {
+            // Find the role by Role ID
+            var role = await _roleManager.FindByIdAsync(id);
+            if (role == null)
+            {
+                ViewBag.ErrorMessage = $"Role with Id = {id} cannot be found";
+                return View("NotFound");
+            }
+            else
+            {
+                await _roleManager.DeleteAsync(role);
+            }
+            return RedirectToAction("ListRoles");
+        }
     }
 }

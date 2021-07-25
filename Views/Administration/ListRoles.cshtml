@@ -21,7 +21,7 @@
                 </div>
                 <div class="card-action">
                     <a asp-controller="Administration" asp-action="EditRole" asp-route-id="@role.Id" class="btn">Edit</a>
-                    <a href="#" class="btn red">Delete</a>
+                    <a asp-controller="Administration" asp-action="Delete" asp-route-id="@role.Id" class="btn red">Delete</a>
                 </div>
             </div>
         }

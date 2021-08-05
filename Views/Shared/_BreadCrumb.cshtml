@@ -1,15 +1,25 @@
 ﻿@inject MoveNowB.Services.Interfaces.ICarRepository _carRepos
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
 
-<nav class="white z-depth-0" style="height:auto">
-    <div class="nav-wrapper container">
-        <div class="col s12">
-
-            <a href="#!" class="breadcrumb indigo-text"><i class="material-icons indigo-text">apps</i> &nbsp;Our Models</a>
-            <a asp-action="AllCars" class="breadcrumb black-text">All</a>
-            @foreach (var car in _carRepos.GetBrands())
-            {
-                <a asp-action="BrandCars" asp-route-name="@car" class="breadcrumb black-text">@car</a>
-            }
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <blockquote style="border-left: 5px solid #009688;">Our Brands</blockquote>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="AddCar" class="btn">Add New<i class="material-icons right">add</i></a>
+                    }
+                }
+                <a asp-action="AllCars" class="black-text btn z-depth-0 white">All<i class="material-icons right black-text">chevron_right</i></a>
+                @foreach (var car in _carRepos.GetBrands())
+                {
+                    <a asp-action="BrandCars" asp-route-name="@car" class="black-text btn z-depth-0 white">@car<i class="material-icons right black-text">chevron_right</i></a>
+                }
+            </div>
         </div>
     </div>
-</nav>
+</section>

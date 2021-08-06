@@ -43,7 +43,16 @@ namespace MoveNowB.Services.Repositories
         }
         public int Availability(int carId)
         {
-            return _context.Cars.Find(carId).Amount;
+            int result;
+            if (_context.Cars.Find(carId)==null)
+            {
+                result = 0;
+            }
+            else
+            {
+                result = _context.Cars.Find(carId).Amount;
+            }
+            return result;
         }
 
         public IEnumerable<RentCar> GetAllRents()
